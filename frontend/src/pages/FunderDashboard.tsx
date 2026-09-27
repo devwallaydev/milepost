@@ -1,12 +1,10 @@
 import { useState } from "react";
 import "./FunderDashboard.css";
-import {
-  TrendingUp,
-  CheckCircle,
-  Activity,
-  WalletCards,
-  AlertTriangle,
-} from "lucide-react";
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up.mjs';
+import CheckCircle from 'lucide-react/dist/esm/icons/check-circle.mjs';
+import Activity from 'lucide-react/dist/esm/icons/activity.mjs';
+import WalletCards from 'lucide-react/dist/esm/icons/wallet-cards.mjs';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle.mjs';
 import { Link } from "react-router-dom";
 import {
   useContractRead,

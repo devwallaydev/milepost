@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Buffer } from 'buffer';
-import { CheckCircle2, XCircle, ShieldCheck } from 'lucide-react';
+import CheckCircle2 from 'lucide-react/dist/esm/icons/check-circle-2.mjs';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle.mjs';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
 import { useContractResult } from '../hooks';
 import { useSoroban } from '../context/useSoroban';
 import { AsyncView } from '../components/state/AsyncStates';

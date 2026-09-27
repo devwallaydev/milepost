@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
-import { Copy, Check } from 'lucide-react';
+import Copy from 'lucide-react/dist/esm/icons/copy.mjs';
+import Check from 'lucide-react/dist/esm/icons/check.mjs';
 
 /**
  * Copies a value to the clipboard and briefly shows confirmation.

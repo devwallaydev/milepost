@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Buffer } from 'buffer';
-import { CheckCircle2, XCircle, AlertTriangle } from 'lucide-react';
+import CheckCircle2 from 'lucide-react/dist/esm/icons/check-circle-2.mjs';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle.mjs';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle.mjs';
 import { useContractResult } from '../hooks';
 import { AsyncView } from '../components/state/AsyncStates';
 import { Badge, Button, Card, Field, Stat } from '../components/ui';

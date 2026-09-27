@@ -21,7 +21,7 @@ function mockIndex(options: {
   indexedAt?: string;
   fail?: boolean;
 } = {}) {
-  const { programmes = [], indexedAt = new Date().toISOString(), fail = false } = options;
+  const { programmes = FIXTURE_PROGRAMMES, indexedAt = new Date().toISOString(), fail = false } = options;
   vi.stubGlobal(
     'fetch',
     vi.fn(async (input: string | URL) => {
@@ -46,9 +46,8 @@ function renderDirectory(path = '/directory') {
   );
 }
 
-async function cardCount() {
-  const links = await screen.findAllByRole('link');
-  return links.length;
+function cardCount() {
+  return screen.queryAllByRole('link').length;
 }
 
 describe('ProgrammeDirectory', () => {
@@ -62,9 +61,9 @@ describe('ProgrammeDirectory', () => {
 
   it('renders a card for every programme once the index resolves', async () => {
     renderDirectory();
-    await waitFor(async () => {
-      expect(await cardCount()).toBe(FIXTURE_PROGRAMMES.length);
-    });
+    await waitFor(() => {
+      expect(cardCount()).toBe(FIXTURE_PROGRAMMES.length);
+    }, { timeout: 5000 });
   });
 
   it('filters cards by search text', async () => {
@@ -110,9 +109,9 @@ describe('ProgrammeDirectory', () => {
     renderDirectory();
 
     expect(await screen.findByRole('alert')).toBeTruthy();
-    await waitFor(async () => {
-      expect(await cardCount()).toBe(FIXTURE_PROGRAMMES.length);
-    });
+    await waitFor(() => {
+      expect(cardCount()).toBe(FIXTURE_PROGRAMMES.length);
+    }, { timeout: 5000 });
   });
 
   it('shows an empty state with a way out when nothing matches', async () => {

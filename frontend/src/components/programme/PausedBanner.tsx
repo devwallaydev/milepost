@@ -1,4 +1,4 @@
-import { AlertTriangle } from 'lucide-react';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle.mjs';
 import { useContractRead, type useProgramme } from '../../hooks';
 import { Card } from '../ui';
 import './PausedBanner.css';

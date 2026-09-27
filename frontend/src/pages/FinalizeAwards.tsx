@@ -1,17 +1,15 @@
 import { useState, type FormEvent } from 'react';
-import {
-  AlertTriangle,
-  ArrowRight,
-  Award as AwardIcon,
-  CheckCircle,
-  Coins,
-  Globe,
-  Landmark,
-  Lock,
-  Search,
-  ShieldCheck,
-  Wallet,
-} from 'lucide-react';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle.mjs';
+import ArrowRight from 'lucide-react/dist/esm/icons/arrow-right.mjs';
+import AwardIcon from 'lucide-react/dist/esm/icons/award.mjs';
+import CheckCircle from 'lucide-react/dist/esm/icons/check-circle.mjs';
+import Coins from 'lucide-react/dist/esm/icons/coins.mjs';
+import Globe from 'lucide-react/dist/esm/icons/globe.mjs';
+import Landmark from 'lucide-react/dist/esm/icons/landmark.mjs';
+import Lock from 'lucide-react/dist/esm/icons/lock.mjs';
+import Search from 'lucide-react/dist/esm/icons/search.mjs';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
+import Wallet from 'lucide-react/dist/esm/icons/wallet.mjs';
 import { contract, type Award, type Mode } from '@milepost/program';
 import { useContractRead, useContractResult, useProgramme, useTransaction } from '../hooks';
 import { useWallet } from '../context/useWallet';

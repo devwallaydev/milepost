@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { ChevronDown, Menu as MenuIcon } from 'lucide-react';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down.mjs';
+import MenuIcon from 'lucide-react/dist/esm/icons/menu.mjs';
 import { Link, useLocation } from 'react-router-dom';
 import { useWallet } from '../../context/useWallet';
 import { APP_ROUTES, HOME_ANCHORS } from '../../routes';

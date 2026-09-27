@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Buffer } from 'buffer';
-import { Clock, ShieldCheck } from 'lucide-react';
+import Clock from 'lucide-react/dist/esm/icons/clock.mjs';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
 import { useSoroban } from '../../context/useSoroban';
 import { useTransaction, phaseLabel } from '../../hooks/useTransaction';
 import { Badge, Button, Card } from '../ui';

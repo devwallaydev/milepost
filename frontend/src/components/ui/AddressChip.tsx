@@ -1,4 +1,5 @@
-import { ShieldAlert, ShieldCheck } from 'lucide-react';
+import ShieldAlert from 'lucide-react/dist/esm/icons/shield-alert.mjs';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
 import { truncateAddress } from '../../lib/format';
 import { registryVerificationCopy } from '../../lib/registryVerification';
 import { CopyButton } from './CopyButton';

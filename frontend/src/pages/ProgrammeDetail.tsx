@@ -1,15 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import type { ProgrammeConfig } from "@milepost/program";
-import {
-  AlertTriangle,
-  CheckCircle2,
-  FileText,
-  Landmark,
-  ShieldAlert,
-  ShieldCheck,
-  UsersRound,
-} from "lucide-react";
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle.mjs';
+import CheckCircle2 from 'lucide-react/dist/esm/icons/check-circle-2.mjs';
+import FileText from 'lucide-react/dist/esm/icons/file-text.mjs';
+import Landmark from 'lucide-react/dist/esm/icons/landmark.mjs';
+import ShieldAlert from 'lucide-react/dist/esm/icons/shield-alert.mjs';
+import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
+import UsersRound from 'lucide-react/dist/esm/icons/users-round.mjs';
 import { AsyncView } from "../components/state/AsyncStates";
 import { PausedBanner } from "../components/programme/PausedBanner";
 import { ProgrammeHeader } from "../components/programme/ProgrammeHeader";

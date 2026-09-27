@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Wallet } from 'lucide-react';
+import Wallet from 'lucide-react/dist/esm/icons/wallet.mjs';
 import { useWallet } from '../../context/useWallet';
 import { explain, isFailure } from '../../lib/errors';
 import { ErrorPanel, PendingState } from '../state/AsyncStates';
