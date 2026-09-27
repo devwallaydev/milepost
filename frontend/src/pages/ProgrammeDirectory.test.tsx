@@ -21,7 +21,7 @@ function mockIndex(options: {
   indexedAt?: string;
   fail?: boolean;
 } = {}) {
-  const { programmes = FIXTURE_PROGRAMMES, indexedAt = new Date().toISOString(), fail = false } = options;
+  const { programmes = [], indexedAt = new Date().toISOString(), fail = false } = options;
   vi.stubGlobal(
     'fetch',
     vi.fn(async (input: string | URL) => {
@@ -46,8 +46,9 @@ function renderDirectory(path = '/directory') {
   );
 }
 
-function cardCount() {
-  return screen.queryAllByRole('link').length;
+async function cardCount() {
+  const links = await screen.findAllByRole('link');
+  return links.length;
 }
 
 describe('ProgrammeDirectory', () => {
@@ -61,8 +62,10 @@ describe('ProgrammeDirectory', () => {
 
   it('renders a card for every programme once the index resolves', async () => {
     renderDirectory();
-    await waitFor(() => {
-      expect(cardCount()).toBe(FIXTURE_PROGRAMMES.length);
+    // The index fetch and the directory's merge can take over a second under a
+    // full parallel run, past waitFor's default.
+    await waitFor(async () => {
+      expect(await cardCount()).toBe(FIXTURE_PROGRAMMES.length);
     }, { timeout: 5000 });
   });
 
@@ -109,8 +112,10 @@ describe('ProgrammeDirectory', () => {
     renderDirectory();
 
     expect(await screen.findByRole('alert')).toBeTruthy();
-    await waitFor(() => {
-      expect(cardCount()).toBe(FIXTURE_PROGRAMMES.length);
+    // The index fetch and the directory's merge can take over a second under a
+    // full parallel run, past waitFor's default.
+    await waitFor(async () => {
+      expect(await cardCount()).toBe(FIXTURE_PROGRAMMES.length);
     }, { timeout: 5000 });
   });
 

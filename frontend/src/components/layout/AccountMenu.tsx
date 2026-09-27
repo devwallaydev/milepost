@@ -1,4 +1,4 @@
-import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down.mjs';
+import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useWallet } from '../../context/useWallet';
 import { truncateAddress } from '../../lib/format';

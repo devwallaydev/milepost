@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, type KeyboardEvent } from 'react';
 import './MoneyPath.css';
 import { FIXTURE_PATH_BUDGET } from '../../fixtures/homeFixtures';
 
@@ -19,12 +19,34 @@ const STEPS: StepData[] = [
   { name: 'Finalize', moves: false, plain: 'The award is the middle vote.', detail: 'The median, so neither one cautious reviewer nor one generous outlier decides. The award is fixed; nothing is transferred yet.', tech: 'program.finalize(applicant) · median · quorum ≤ MAX_QUORUM (16)', sq: { locked: 14, pool: 6 } },
   { name: 'Attest', moves: false, plain: 'A trusted verifier confirms the condition was met.', detail: 'A signed claim about the recipient, under a schema the programme chose.', tech: 'attest.attest(attester, schema, subject, data)', sq: { locked: 14, pool: 6 }, ring: 5 },
   { name: 'Release', moves: true, plain: 'One confirmation unlocks one tranche.', detail: 'This is the milepost. A proof can be used once; the rest stays locked.', tech: 'program.release(recipient, attestation) · AttestationAlreadyUsed (22)', sq: { released: 5, locked: 9, pool: 6 } },
-  { name: 'Spend', moves: true, plain: 'The money reaches a verified payee.', detail: 'Paid directly, chosen by the recipient from escrow, or spent from their wallet under a policy. Unawarded budget is refunded to funders once the window closes.', tech: 'Direct · Allocated · Restricted · refund() · sweep()', sq: { released: 5, locked: 9, refund: 6 } },
+  { name: 'Spend', moves: true, plain: 'The money reaches a verified payee.', detail: 'Paid directly, chosen by the recipient from escrow, spent from their wallet under a policy, or paid to them with no restriction. Unawarded budget is refunded to funders in proportion once the window closes.', tech: 'Direct · Allocated · Restricted · Open · refund() · sweep()', sq: { released: 5, locked: 9, refund: 6 } },
 ];
 
 export const MoneyPath: React.FC = () => {
   const [stepIndex, setStepIndex] = useState(0);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const cur = STEPS[stepIndex];
+
+  // Roving tabindex: one tab stop for the list, arrows move between steps.
+  const focusStep = (i: number) => {
+    setStepIndex(i);
+    tabRefs.current[i]?.focus();
+  };
+  const onTabKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const last = STEPS.length - 1;
+    const next: Record<string, number> = {
+      ArrowRight: stepIndex === last ? 0 : stepIndex + 1,
+      ArrowDown: stepIndex === last ? 0 : stepIndex + 1,
+      ArrowLeft: stepIndex === 0 ? last : stepIndex - 1,
+      ArrowUp: stepIndex === 0 ? last : stepIndex - 1,
+      Home: 0,
+      End: last,
+    };
+    if (e.key in next) {
+      e.preventDefault();
+      focusStep(next[e.key]);
+    }
+  };
   
   const unit = FIXTURE_PATH_BUDGET / 20;
   const curFormat = (n: number) => n.toLocaleString() + ' USDC';
@@ -76,23 +98,40 @@ export const MoneyPath: React.FC = () => {
       <div role="tablist" aria-label="Money path steps" className="money-path-tablist">
         {STEPS.map((s, i) => (
           <button
-            key={i}
+            key={s.name}
+            ref={(el) => {
+              tabRefs.current[i] = el;
+            }}
             type="button"
             role="tab"
+            id={`money-path-tab-${i}`}
             aria-selected={i === stepIndex}
+            aria-controls="money-path-panel"
+            tabIndex={i === stepIndex ? 0 : -1}
             onClick={() => setStepIndex(i)}
+            onKeyDown={onTabKeyDown}
             className="money-path-tab"
           >
             <span className="tab-header">
               <span className="tab-num">0{i + 1}</span>
-              {s.moves && <span aria-label="money moves" className="tab-dot"></span>}
+              {s.moves && (
+                <>
+                  <span aria-hidden="true" className="tab-dot"></span>
+                  <span className="visually-hidden">, money moves</span>
+                </>
+              )}
             </span>
             <span className="tab-name">{s.name}</span>
           </button>
         ))}
       </div>
 
-      <div role="tabpanel" className="money-path-panel">
+      <div
+        role="tabpanel"
+        id="money-path-panel"
+        aria-labelledby={`money-path-tab-${stepIndex}`}
+        className="money-path-panel"
+      >
         <div className="panel-content">
           <span className={`panel-badge ${cur.moves ? 'panel-badge--moves' : 'panel-badge--static'}`}>
             {cur.moves ? 'Money moves' : 'No money moves'}

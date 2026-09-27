@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Buffer } from 'buffer';
-import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
-import Copy from 'lucide-react/dist/esm/icons/copy.mjs';
-import Check from 'lucide-react/dist/esm/icons/check.mjs';
+import { ShieldCheck, Copy, Check } from 'lucide-react';
 import { useSoroban } from '../context/useSoroban';
 import { useWallet } from '../context/useWallet';
 import { useTransaction, phaseLabel } from '../hooks/useTransaction';

@@ -1,14 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import Lock from 'lucide-react/dist/esm/icons/lock.mjs';
-import Unlock from 'lucide-react/dist/esm/icons/unlock.mjs';
+import { Lock, Unlock } from 'lucide-react';
 import { CopyButton } from '../components/ui/CopyButton';
 import { HeroDemo } from '../components/landing/HeroDemo';
 import { RoleEntryCards } from '../components/landing/RoleEntryCards';
 import { ProblemSection } from '../components/landing/ProblemSection';
 import { MoneyPath } from '../components/home/MoneyPath';
 import { WhyStellar } from '../components/home/WhyStellar';
+import { ModesCompared } from '../components/home/ModesCompared';
+import { Verticals } from '../components/home/Verticals';
 import { GUARANTEES, LIMITS, ROLES, type Claim } from './homeContent';
 import { LiveIndex } from '../components/home/LiveIndex';
 
@@ -176,6 +177,10 @@ export const Home: React.FC = () => {
 
       {/* Why Stellar (landing section 5) */}
       <WhyStellar />
+
+      <ModesCompared />
+
+      <Verticals />
 
       {/* Roles */}
       <section id="roles" className="roles-section scroll-animate" aria-labelledby="roles-heading">

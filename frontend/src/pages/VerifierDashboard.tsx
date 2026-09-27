@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { Buffer } from 'buffer';
 import './VerifierDashboard.css';
-import ShieldCheck from 'lucide-react/dist/esm/icons/shield-check.mjs';
-import Clock from 'lucide-react/dist/esm/icons/clock.mjs';
-import FileSignature from 'lucide-react/dist/esm/icons/file-signature.mjs';
+import { ShieldCheck, Clock, FileSignature } from 'lucide-react';
 import type { Application } from '@milepost/program';
 import type { Client as AttestClient } from '@milepost/attest';
 import { useContractRead, useContractResult, useIndexedList, useProgramme, useTransaction, phaseLabel } from '../hooks';
