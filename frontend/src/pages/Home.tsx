@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import { Zap, Lock, Unlock } from 'lucide-react';
+import Lock from 'lucide-react/dist/esm/icons/lock.mjs';
+import Unlock from 'lucide-react/dist/esm/icons/unlock.mjs';
 import { CopyButton } from '../components/ui/CopyButton';
 import { HeroDemo } from '../components/landing/HeroDemo';
 import { RoleEntryCards } from '../components/landing/RoleEntryCards';
 import { ProblemSection } from '../components/landing/ProblemSection';
 import { MoneyPath } from '../components/home/MoneyPath';
+import { WhyStellar } from '../components/home/WhyStellar';
 import { GUARANTEES, LIMITS, ROLES, type Claim } from './homeContent';
 import { LiveIndex } from '../components/home/LiveIndex';
 
@@ -172,22 +174,8 @@ export const Home: React.FC = () => {
       {/* How it works (landing section 4): The seven-step money path */}
       <MoneyPath />
 
-      {/* Infrastructure CTA (Full Bleed) */}
-      <section className="infrastructure-section full-bleed scroll-animate">
-        <div className="infra-container">
-          <div className="infra-text">
-            <h2>Built for the Ecosystem</h2>
-            <p>
-              Milepost is built on Soroban. The core modules—<code>attest</code>, <code>record</code>, and <code>policy_spend</code>—are deliberately decoupled as open-source public goods available for any Stellar developer.
-            </p>
-          </div>
-          <div className="infra-action">
-             <Link to="/funders" className="btn-primary btn-large btn-inverted">
-              View Dashboard <Zap size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Why Stellar (landing section 5) */}
+      <WhyStellar />
 
       {/* Roles */}
       <section id="roles" className="roles-section scroll-animate" aria-labelledby="roles-heading">
